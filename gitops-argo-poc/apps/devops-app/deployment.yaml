@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: devops-app
-          image: devops-app:0.1
+          image: naginx:apline
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
