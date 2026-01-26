@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: devops-app
-          image: nginx:apline
+          image: nginx:alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
