@@ -18,4 +18,4 @@ spec:
           image: nginx:alpine
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 80
