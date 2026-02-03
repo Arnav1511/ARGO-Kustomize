@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-app-uat
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Arnav1511/ARGO-Helm.git
+    targetRevision: main
+    path: gitops-argo-poc/apps/devops-app/overlays/uat
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
