@@ -1,1 +1,20 @@
-ARGO CD with kustomize
+```mermaid
+flowchart TD
+    subgraph repo["GitHub Repo (Source of Truth)"]
+        AC1[Application CR: dev]
+        AC2[Application CR: uat]
+        BASE[base/ — deployment + service]
+        DEV[overlays/dev — ns: dv, suffix: -dev]
+        UAT[overlays/uat — ns: ut, suffix: -uat]
+    end
+
+    repo -->|watches main branch| ARGO[ArgoCD Controller — auto-sync, prune, self-heal]
+
+    ARGO -->|kustomize build dev| K8SDEV
+    ARGO -->|kustomize build uat| K8SUAT
+
+    subgraph cluster["Kubernetes Cluster"]
+        K8SDEV["namespace: dv — devops-app-dev (1 replica)"]
+        K8SUAT["namespace: ut — devops-app-uat (1 replica)"]
+    end
+```
